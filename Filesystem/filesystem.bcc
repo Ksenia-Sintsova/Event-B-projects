@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.scContextFile org.eventb.core.accurate="true" org.eventb.core.configuration="org.eventb.core.fwd">
+    <org.eventb.core.scAxiom name="'" org.eventb.core.label="axm1" org.eventb.core.predicate="Admin∈Users" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.axiom#\/" org.eventb.core.theorem="false"/>
+    <org.eventb.core.scAxiom name="(" org.eventb.core.label="axm2" org.eventb.core.predicate="partition(Operation,{Execute},{Display},{Delete},{Delete_perm})" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.axiom#0" org.eventb.core.theorem="false"/>
+    <org.eventb.core.scConstant name="Delete" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.constant#*" org.eventb.core.type="Operation"/>
+    <org.eventb.core.scConstant name="Delete_perm" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.constant#+" org.eventb.core.type="Operation"/>
+    <org.eventb.core.scConstant name="Admin" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.constant#'" org.eventb.core.type="Users"/>
+    <org.eventb.core.scCarrierSet name="Users" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.carrierSet#," org.eventb.core.type="ℙ(Users)"/>
+    <org.eventb.core.scCarrierSet name="File" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.carrierSet#-" org.eventb.core.type="ℙ(File)"/>
+    <org.eventb.core.scConstant name="Execute" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.constant#(" org.eventb.core.type="Operation"/>
+    <org.eventb.core.scConstant name="Display" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.constant#)" org.eventb.core.type="Operation"/>
+    <org.eventb.core.scCarrierSet name="Operation" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.carrierSet#." org.eventb.core.type="ℙ(Operation)"/>
+</org.eventb.core.scContextFile>

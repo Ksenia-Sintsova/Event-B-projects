@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="existing_file ≔ ∅" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="owner ≔ ∅" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="access ≔ Users × ∅" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="opened_file ≔ ∅" org.eventb.core.label="act4"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="current_user :∈ Users" org.eventb.core.comment="текущий пользователь входит в множество всех пользователей (произвольный выбор)" org.eventb.core.label="act5"/>
+    </org.eventb.core.event>
+    <org.eventb.core.seesContext name="(" org.eventb.core.target="filesystem"/>
+    <org.eventb.core.variable name=")" org.eventb.core.comment="исполняемый файл" org.eventb.core.identifier="existing_file"/>
+    <org.eventb.core.variable name="*" org.eventb.core.comment="владелец" org.eventb.core.identifier="owner"/>
+    <org.eventb.core.variable name="+" org.eventb.core.comment="доступ" org.eventb.core.identifier="access"/>
+    <org.eventb.core.variable name="," org.eventb.core.comment="открытый файл" org.eventb.core.identifier="opened_file"/>
+    <org.eventb.core.variable name="-" org.eventb.core.comment="текущий пользователь" org.eventb.core.identifier="current_user"/>
+    <org.eventb.core.invariant name="." org.eventb.core.comment="исполняемый файл содержится во множестве всех Файлов" org.eventb.core.label="inv1" org.eventb.core.predicate="existing_file ⊆ File   "/>
+    <org.eventb.core.invariant name="/" org.eventb.core.comment="Если пользователю принадлежит исполняемый файл, то это владелец" org.eventb.core.label="inv2" org.eventb.core.predicate="owner ∈ existing_file → Users "/>
+    <org.eventb.core.invariant name="0" org.eventb.core.comment="Доступ пользователя это то же самое, что и декартово&#13;&#10; произведение всех доступных операция на исполняемый файл" org.eventb.core.label="inv3" org.eventb.core.predicate="access ∈ Users ↔ (Operation × existing_file)"/>
+    <org.eventb.core.invariant name="1" org.eventb.core.comment="Открытые файлы содержатся в исполняемых файлах" org.eventb.core.label="inv4" org.eventb.core.predicate="opened_file ⊆ existing_file" org.eventb.core.theorem="true"/>
+    <org.eventb.core.invariant name="2" org.eventb.core.comment="переменныя Текущий пользователь принадлежит множеству всех Пользователей" org.eventb.core.label="inv5" org.eventb.core.predicate="current_user ∈ Users"/>
+    <org.eventb.core.invariant name="3" org.eventb.core.comment="Открытые файлы содержатся во множестве &#13;&#10;таких файлов, для которых доступ на &#13;&#10;отображение файла есть у текущего &#13;&#10;пользователя" org.eventb.core.label="inv6" org.eventb.core.predicate="opened_file ⊆ {file · Display ↦ file ∈ access [{current_user}] ∣ file}" org.eventb.core.theorem="true"/>
+    <org.eventb.core.event name="4" org.eventb.core.comment="событие - открытие файла" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="opened_file">
+        <org.eventb.core.parameter name="'" org.eventb.core.comment="определим параметр &quot;файл&quot;" org.eventb.core.identifier="file"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="opened_file ≔ opened_file ∪ {file}" org.eventb.core.comment=" ›если указанные выше условия выполняются, происходит открытие фа" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name=")" org.eventb.core.comment="файл должен принадлежать исполняемому файлу" org.eventb.core.label="grd1" org.eventb.core.predicate="file ∈ existing_file"/>
+        <org.eventb.core.guard name="*" org.eventb.core.comment="Длжно происходить отображение только того файла, к которому&#13;&#10;есть доступ у текущего пользователя" org.eventb.core.label="grd2" org.eventb.core.predicate="Display ↦ file ∈ access [{current_user}]"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>

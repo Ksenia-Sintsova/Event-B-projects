@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd" version="3">
+    <org.eventb.core.constant name="'" org.eventb.core.comment="Администратор" org.eventb.core.identifier="Admin"/>
+    <org.eventb.core.constant name="(" org.eventb.core.comment="Исполнить файл" org.eventb.core.identifier="Execute"/>
+    <org.eventb.core.constant name=")" org.eventb.core.comment="Отобразить файл" org.eventb.core.identifier="Display"/>
+    <org.eventb.core.constant name="*" org.eventb.core.comment="Удалить файл" org.eventb.core.identifier="Delete"/>
+    <org.eventb.core.constant name="+" org.eventb.core.comment="Удалить файл совсем" org.eventb.core.identifier="Delete_perm"/>
+    <org.eventb.core.carrierSet name="," org.eventb.core.comment="множество пользователей" org.eventb.core.identifier="Users"/>
+    <org.eventb.core.carrierSet name="-" org.eventb.core.comment="множество файлов" org.eventb.core.identifier="File"/>
+    <org.eventb.core.carrierSet name="." org.eventb.core.comment="множество операций" org.eventb.core.identifier="Operation"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.comment="Администратор должен быть пользователем" org.eventb.core.label="axm1" org.eventb.core.predicate="Admin ∈ Users "/>
+    <org.eventb.core.axiom name="0" org.eventb.core.comment="Операции исполнения,&#13;&#10;отображения, удаления &#13;&#10;и удаления совсем &#13;&#10;создают тип Операции" org.eventb.core.label="axm2" org.eventb.core.predicate="partition(Operation, {Execute}, {Display}, {Delete}, {Delete_perm})"/>
+</org.eventb.core.contextFile>

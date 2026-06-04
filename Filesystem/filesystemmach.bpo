@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="4">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="1">
+        <org.eventb.core.poIdentifier name="Users" org.eventb.core.type="ℙ(Users)"/>
+        <org.eventb.core.poIdentifier name="File" org.eventb.core.type="ℙ(File)"/>
+        <org.eventb.core.poIdentifier name="Operation" org.eventb.core.type="ℙ(Operation)"/>
+        <org.eventb.core.poIdentifier name="Delete" org.eventb.core.type="Operation"/>
+        <org.eventb.core.poIdentifier name="Delete_perm" org.eventb.core.type="Operation"/>
+        <org.eventb.core.poIdentifier name="Admin" org.eventb.core.type="Users"/>
+        <org.eventb.core.poIdentifier name="Execute" org.eventb.core.type="Operation"/>
+        <org.eventb.core.poIdentifier name="Display" org.eventb.core.type="Operation"/>
+        <org.eventb.core.poPredicate name="Delete_pern" org.eventb.core.predicate="Admin∈Users" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="Delete_pero" org.eventb.core.predicate="partition(Operation,{Execute},{Display},{Delete},{Delete_perm})" org.eventb.core.source="/Filesystem/filesystem.buc|org.eventb.core.contextFile#filesystem|org.eventb.core.axiom#0"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="3">
+        <org.eventb.core.poIdentifier name="opened_file" org.eventb.core.type="ℙ(File)"/>
+        <org.eventb.core.poIdentifier name="existing_file" org.eventb.core.type="ℙ(File)"/>
+        <org.eventb.core.poIdentifier name="owner" org.eventb.core.type="ℙ(File×Users)"/>
+        <org.eventb.core.poIdentifier name="current_user" org.eventb.core.type="Users"/>
+        <org.eventb.core.poIdentifier name="access" org.eventb.core.type="ℙ(Users×(Operation×File))"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="inv4/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="3">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesystep"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="opened_file⊆existing_file" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#1"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#1"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesystep"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="inv6/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="4">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesyster"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="opened_file⊆{file⦂File·Display ↦ file∈access[{current_user}] ∣ file}" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#3"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#3"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesyster"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="3">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#EVTALLHYPexisting_filf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(∅ ⦂ ℙ(File×Users))∈(∅ ⦂ ℙ(File)) → Users" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#\/"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#\/"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poSequent#INITIALISATION\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesystep|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv3/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="3">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#EVTALLHYPexisting_filf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="Users × (∅ ⦂ ℙ(Operation×File))∈Users ↔ Operation × (∅ ⦂ ℙ(File))" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#0"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#0"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poSequent#INITIALISATION\/inv3\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesystep|org.eventb.core.poPredicate#PRD2"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/act5/FIS" org.eventb.core.accurate="true" org.eventb.core.poDesc="Feasibility of action" org.eventb.core.poStamp="3">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#EVTALLHYPexisting_filf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="Users≠(∅ ⦂ ℙ(Users))" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.event#'|org.eventb.core.action#+"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.event#'|org.eventb.core.action#+"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#EVTALLHYPexisting_filf"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTexisting_filf" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="3">
+        <org.eventb.core.poIdentifier name="owner'" org.eventb.core.type="ℙ(File×Users)"/>
+        <org.eventb.core.poIdentifier name="access'" org.eventb.core.type="ℙ(Users×(Operation×File))"/>
+        <org.eventb.core.poIdentifier name="existing_file'" org.eventb.core.type="ℙ(File)"/>
+        <org.eventb.core.poIdentifier name="current_user'" org.eventb.core.type="Users"/>
+        <org.eventb.core.poIdentifier name="opened_file'" org.eventb.core.type="ℙ(File)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPexisting_filf" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#EVTIDENTexisting_filf" org.eventb.core.poStamp="3"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENTexisting_filg" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="4">
+        <org.eventb.core.poIdentifier name="file" org.eventb.core.type="File"/>
+        <org.eventb.core.poIdentifier name="opened_file'" org.eventb.core.type="ℙ(File)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPexisting_filg" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#EVTIDENTexisting_filg" org.eventb.core.poStamp="4">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="file∈existing_file" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.event#4|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="Display ↦ file∈access[{current_user}]" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.event#4|org.eventb.core.guard#*"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="HYPfilesystep" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="existing_file⊆File" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#."/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="owner∈existing_file → Users" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#\/"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="access∈Users ↔ Operation × existing_file" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#0"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="HYPfilesyster" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesystep" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="opened_file⊆existing_file" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#1"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="current_user∈Users" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#2"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/Filesystem/filesystemmach.bpo|org.eventb.core.poFile#filesystemmach|org.eventb.core.poPredicateSet#HYPfilesyster" org.eventb.core.poStamp="4">
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="opened_file⊆{file⦂File·Display ↦ file∈access[{current_user}] ∣ file}" org.eventb.core.source="/Filesystem/filesystemmach.bum|org.eventb.core.machineFile#filesystemmach|org.eventb.core.invariant#3"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>
