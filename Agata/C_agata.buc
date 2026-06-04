@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd" version="3">
+    <org.eventb.core.carrierSet name="'" org.eventb.core.identifier="persons"/>
+    <org.eventb.core.constant name="(" org.eventb.core.identifier="Agatha"/>
+    <org.eventb.core.constant name=")" org.eventb.core.comment="садовник" org.eventb.core.identifier="butler"/>
+    <org.eventb.core.constant name="*" org.eventb.core.identifier="Charles"/>
+    <org.eventb.core.constant name="+" org.eventb.core.comment="ненависть" org.eventb.core.identifier="hates"/>
+    <org.eventb.core.constant name="," org.eventb.core.comment="богатство" org.eventb.core.identifier="richer"/>
+    <org.eventb.core.constant name="-" org.eventb.core.comment="убийца" org.eventb.core.identifier="killer"/>
+    <org.eventb.core.axiom name="." org.eventb.core.comment="множество персон" org.eventb.core.label="person_partition" org.eventb.core.predicate="partition(persons,{Agatha},{butler},{Charles})"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.comment="отношение ненависти" org.eventb.core.label="hate_relation" org.eventb.core.predicate="hates ∈ persons ↔ persons" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="0" org.eventb.core.comment="отношение богатства: никто не богаче себя самого,&#13;&#10;транзитивность отношения, &#13;&#10;один человек всегда богаче другого, никогда в обе стороны" org.eventb.core.label="richer_relation" org.eventb.core.predicate="richer ∈ persons ↔ persons ∧&#13;&#10;richer ∩ id = ∅ ∧ (∀x,y,z·(x ↦ y ∈ richer ∧&#13;&#10;y ↦ z ∈ richer) ⇒ x ↦ z ∈ richer) ∧ &#13;&#10;(∀ x,y·x ∈ persons ∧ y ∈ persons ∧ &#13;&#10;x ≠ y ⇒ (x ↦ y ∈ richer ⇔ y ↦ x ∉ richer))"/>
+    <org.eventb.core.axiom name="1" org.eventb.core.label="killer_type" org.eventb.core.predicate="killer ∈ persons"/>
+    <org.eventb.core.axiom name="2" org.eventb.core.comment="убийца ненавидит свою жертву" org.eventb.core.label="killer_hates" org.eventb.core.predicate="killer ↦ Agatha ∈ hates" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="3" org.eventb.core.comment="убийца не багоче своей жертвы" org.eventb.core.label="killer_not_richer" org.eventb.core.predicate="killer ↦ Agatha ∉ richer"/>
+    <org.eventb.core.axiom name="4" org.eventb.core.comment="Чарльз не ненавидит никого, кого ненавидит Агата" org.eventb.core.label="charles_hates" org.eventb.core.predicate="hates[{Agatha}] ∩ hates[{Charles}]=∅"/>
+    <org.eventb.core.axiom name="5" org.eventb.core.comment="Агата ненавидит всех, кроме дворецкого" org.eventb.core.label="agatha_hates" org.eventb.core.predicate="hates[{Agatha}]=persons ∖ {butler}"/>
+    <org.eventb.core.axiom name="6" org.eventb.core.comment="Дворецкий ненавидит всех, кто не богаче Агаты" org.eventb.core.label="butler_hates_1" org.eventb.core.predicate="∀ x·(x ↦ Agatha ∉ richer ⇒ butler ↦ x ∈ hates)"/>
+    <org.eventb.core.axiom name="7" org.eventb.core.comment="Дворецкий ненавидит всех, кого ненавидит Агата" org.eventb.core.label="butler_hates_2" org.eventb.core.predicate="hates[{Agatha}] ⊆ hates[{butler}]∧&#13;&#10;(∀x·x ∈ persons ⇒ &#13;&#10;hates[{x}]≠persons)"/>
+    <org.eventb.core.axiom name="8" org.eventb.core.comment="Никто не ненавидит всех" org.eventb.core.label="noone_hates_everyone" org.eventb.core.predicate="∀x·x ∈ persons ∧ hates[{x}]≠persons"/>
+    <org.eventb.core.axiom name="9" org.eventb.core.label="solution" org.eventb.core.predicate="killer=Agatha" org.eventb.core.theorem="true"/>
+</org.eventb.core.contextFile>
